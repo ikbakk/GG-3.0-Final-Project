@@ -21,7 +21,7 @@ const NavItems = () => {
     navigate(href);
   };
   return (
-    <ul className="flex items-center gap-4">
+    <ul className="flex items-center">
       {navItems.map(({ id, title, href }) => (
         <li key={id}>
           <Button variant="link" onClick={() => handleClick(href)}>
