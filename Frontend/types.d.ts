@@ -10,6 +10,8 @@ export interface Comment {
   id: string;
   username: string;
   comment: string;
+  videoID: string;
+  timestamp: string;
 }
 
 export interface Video {

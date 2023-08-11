@@ -1,18 +1,26 @@
-import { Card } from "../ui/card";
+import useTimeAgo from "@/hooks/useTimeAgo";
+import CustomAvatar from "../Avatar";
 
 interface CommentCardProps {
-  username: string;
   comment: string;
+  username: string;
+  timestamp: string;
 }
 
-const CommentCard = ({ comment, username }: CommentCardProps) => {
+const CommentCard = ({ comment, username, timestamp }: CommentCardProps) => {
+  const timeAgo = useTimeAgo(timestamp);
+  const firstLetter = username.charAt(0).toLocaleUpperCase();
   return (
-    <Card className="flex items-center px-3 py-2">
-      <p>
-        <strong>{username}: </strong>
-        {comment}
-      </p>
-    </Card>
+    <div className="flex w-fit items-center gap-2">
+      <CustomAvatar src="" fallback={firstLetter} />
+      <div>
+        <div className="bg-card p-2">
+          <p className="text-xs font-semibold text-primary">{username}</p>
+          <p className="first-letter:capitalize">{comment}</p>
+        </div>
+        <p className="text-xs">{timeAgo}</p>
+      </div>
+    </div>
   );
 };
 

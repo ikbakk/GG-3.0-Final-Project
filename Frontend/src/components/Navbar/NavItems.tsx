@@ -24,11 +24,7 @@ const NavItems = () => {
     <ul className="flex items-center gap-4">
       {navItems.map(({ id, title, href }) => (
         <li key={id}>
-          <Button
-            className="rounded-full"
-            variant="ghost"
-            onClick={() => handleClick(href)}
-          >
+          <Button variant="link" onClick={() => handleClick(href)}>
             {title}
           </Button>
         </li>
