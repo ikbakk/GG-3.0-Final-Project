@@ -5,13 +5,14 @@ export interface ContextValue {
   formInputs: formInputs;
   setComments: React.Dispatch<React.SetStateAction<Comment[]>>;
   setFormInputs: React.Dispatch<React.SetStateAction<formInputs>>;
+  fetchData: () => Promise<void>;
 }
 
 export interface ContextProvider {
   children: React.ReactNode;
 }
 
-export interface formInputs {
+export interface FormInputs {
   username: string;
   comment: string;
 }

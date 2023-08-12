@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
@@ -6,24 +6,31 @@ import { Textarea } from "../ui/textarea";
 import { CommentContext } from "@/contexts/CommentContext";
 
 const CommentForm = () => {
-  const { formInputs, setFormInputs } = useContext(CommentContext);
-  const [newInputs, setNewInputs] = useState(formInputs);
+  const { formInputs, setFormInputs, fetchData } = useContext(CommentContext);
+  const emptyForm = {
+    username: "",
+    comment: "",
+  };
 
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setFormInputs(newInputs);
+    fetchData();
+    setFormInputs(emptyForm);
   };
 
   return (
-    <form className="flex basis-[30%] flex-col gap-2 rounded-lg p-4 ">
+    <form
+      onSubmit={(e) => handleSubmit(e)}
+      className="flex basis-[30%] flex-col gap-2 rounded-lg p-4 "
+    >
       <Label htmlFor="username">Username: </Label>
       <Input
         className="bg-card accent-card  hover:bg-white/10"
         name="username"
         type="text"
-        value={newInputs.username}
+        value={formInputs.username}
         onChange={(e) =>
-          setNewInputs({ ...newInputs, username: e.target.value })
+          setFormInputs({ ...formInputs, username: e.target.value })
         }
         placeholder="Masukkan Username"
       />
@@ -31,13 +38,13 @@ const CommentForm = () => {
       <Textarea
         className="bg-card hover:bg-white/10"
         name="comment"
-        value={newInputs.comment}
+        value={formInputs.comment}
         onChange={(e) =>
-          setNewInputs({ ...newInputs, comment: e.target.value })
+          setFormInputs({ ...formInputs, comment: e.target.value })
         }
         placeholder="Masukkan Comment"
       />
-      <Button onClick={(e) => handleSubmit(e)} type="submit" className="my-2">
+      <Button type="submit" className="my-2">
         Submit
       </Button>
     </form>
