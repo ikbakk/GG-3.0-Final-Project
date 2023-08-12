@@ -2,6 +2,7 @@ import CommentForm from "@/components/DetailPage/CommentForm";
 import Comments from "@/components/DetailPage/Comments";
 import MediaPlayer from "@/components/DetailPage/MediaPlayer";
 import ProductsContainer from "@/components/DetailPage/ProductsContainer";
+import CommentsProvider from "@/contexts/CommentContext";
 
 const DetailPage = () => {
   return (
@@ -11,8 +12,10 @@ const DetailPage = () => {
         <ProductsContainer />
       </div>
       <div className="flex h-full w-full grow-0 flex-col overflow-hidden bg-accent md:w-2/5 lg:w-1/5">
-        <Comments />
-        <CommentForm />
+        <CommentsProvider>
+          <Comments />
+          <CommentForm />
+        </CommentsProvider>
       </div>
     </div>
   );
