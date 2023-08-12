@@ -19,6 +19,7 @@ const HomePage = () => {
           <VideoCard
             onClick={() => handleCardClick(item.id)}
             key={item.id}
+            id={item.id}
             title={item.title}
             imgUrl={item.url}
           />
