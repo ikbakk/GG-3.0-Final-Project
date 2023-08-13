@@ -8,7 +8,7 @@ export const MediaPlayerContext = createContext<ContextValue>(
 
 interface InitialState {
   embeddedLink: string;
-  selectedCard: string;
+  productId: string;
 }
 
 const MediaPlayerProvider = ({ children }: ContextProvider) => {
@@ -17,7 +17,7 @@ const MediaPlayerProvider = ({ children }: ContextProvider) => {
     if (!state) {
       return {
         embeddedLink: "",
-        selectedCard: "",
+        productId: "",
       };
     }
 
@@ -25,7 +25,7 @@ const MediaPlayerProvider = ({ children }: ContextProvider) => {
   };
   const initialState = checkRouterState();
   const [embeddedLink, setEmbeddedLink] = useState(initialState.embeddedLink);
-  const [selectedCard, setSelectedCard] = useState(initialState.selectedCard);
+  const [selectedCard, setSelectedCard] = useState(initialState.productId);
 
   const contextValue = {
     embeddedLink,

@@ -24,10 +24,14 @@ const ProductCard = ({ price, title, id, ...props }: ProductCardProps) => {
   };
 
   const className = selectedState();
+  const IDR = new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+  });
   return (
     <Card
       {...props}
-      className={`group w-60 duration-150 hover:cursor-pointer hover:bg-black/40 ${className.cardBg}`}
+      className={`group w-60 duration-150 hover:cursor-pointer hover:border-primary hover:bg-black/40 ${className.cardBg}`}
     >
       <CardHeader className="h-full shrink-0 justify-between">
         <div className="flex h-full flex-col justify-end gap-2">
@@ -39,7 +43,7 @@ const ProductCard = ({ price, title, id, ...props }: ProductCardProps) => {
           <CardDescription
             className={`duration-150 group-hover:text-secondary-foreground ${className.priceColor}`}
           >
-            Rp {price}
+            {IDR.format(price)}
           </CardDescription>
         </div>
       </CardHeader>
