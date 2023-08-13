@@ -30,7 +30,6 @@ export const submitComment = async (
       comment,
     };
     const newComment = await createNewComment({ ...requiredAttributes });
-    console.log(newComment);
     res.status(201).json({ status: "Success", data: newComment });
   } catch (err) {
     errorResponse(err as CustomErrors, res);
