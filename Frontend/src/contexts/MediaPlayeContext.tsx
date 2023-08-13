@@ -1,13 +1,31 @@
 import { ContextProvider, ContextValue } from "@/types/MediaPlayerContext";
 import { createContext, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 export const MediaPlayerContext = createContext<ContextValue>(
   {} as ContextValue,
 );
 
+interface InitialState {
+  embeddedLink: string;
+  selectedCard: string;
+}
+
 const MediaPlayerProvider = ({ children }: ContextProvider) => {
-  const [embeddedLink, setEmbeddedLink] = useState("");
-  const [selectedCard, setSelectedCard] = useState("");
+  const { state } = useLocation();
+  const checkRouterState = (): InitialState => {
+    if (!state) {
+      return {
+        embeddedLink: "",
+        selectedCard: "",
+      };
+    }
+
+    return state;
+  };
+  const initialState = checkRouterState();
+  const [embeddedLink, setEmbeddedLink] = useState(initialState.embeddedLink);
+  const [selectedCard, setSelectedCard] = useState(initialState.selectedCard);
 
   const contextValue = {
     embeddedLink,

@@ -1,10 +1,9 @@
 import { Router } from "express";
-import { addVideo, getAllVideos, searchVideos } from "../controllers/videos";
+import { addVideo, getAllVideos } from "../controllers/videos";
 
 const videosRouter = Router();
 
 videosRouter.get("/", getAllVideos);
 videosRouter.post("/", addVideo);
-videosRouter.get("/search", searchVideos);
 
 export default videosRouter;

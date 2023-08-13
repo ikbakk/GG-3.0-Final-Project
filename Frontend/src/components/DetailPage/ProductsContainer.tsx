@@ -10,7 +10,8 @@ import { MediaPlayerContext } from "@/contexts/MediaPlayeContext";
 const ProductsContainer = () => {
   const params = useParams();
   const { data, isLoading } = useFetch<Product>(`products/${params.id}`);
-  const { setEmbeddedLink, setSelectedCard } = useContext(MediaPlayerContext);
+  const { embeddedLink, selectedCard, setEmbeddedLink, setSelectedCard } =
+    useContext(MediaPlayerContext);
 
   const handleSelectCard = (id: string, url: string) => {
     setEmbeddedLink(url);
@@ -19,8 +20,10 @@ const ProductsContainer = () => {
 
   useEffect(() => {
     if (data && !isLoading) {
-      setSelectedCard(data[0].id);
-      setEmbeddedLink(data[0].urlProduct);
+      if (embeddedLink === "" && selectedCard === "") {
+        setSelectedCard(data[0]?.id);
+        setEmbeddedLink(data[0]?.urlProduct);
+      }
     }
   }, [isLoading]);
 

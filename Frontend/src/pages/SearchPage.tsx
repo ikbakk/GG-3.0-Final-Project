@@ -1,52 +1,30 @@
-import VideoCard from "@/components/VideoCard";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Product } from "../../types";
+import { useState } from "react";
+import useSearch from "@/hooks/useSearch";
+
+import SearchForm from "@/components/SearchPage/searchForm";
+import SearchResults from "@/components/SearchPage/searchResult";
 
 const SearchPage = () => {
-  const tes = [
-    {
-      id: 1,
-      title: "Product 1",
-      imgUrl: "https://source.unsplash.com/dIMJWLx1YbE/256x320",
-    },
-    {
-      id: 2,
-      title: "Product 2",
-      imgUrl: "https://source.unsplash.com/dIMJWLx1YbE/256x320",
-    },
-    {
-      id: 3,
-      title: "Product 3",
-      imgUrl: "https://source.unsplash.com/dIMJWLx1YbE/256x320",
-    },
-    {
-      id: 4,
-      title: "Product 4",
-      imgUrl: "https://source.unsplash.com/dIMJWLx1YbE/256x320",
-    },
-    {
-      id: 4,
-      title: "Product 4",
-      imgUrl: "https://source.unsplash.com/dIMJWLx1YbE/256x320",
-    },
-    {
-      id: 4,
-      title: "Product 4",
-      imgUrl: "https://source.unsplash.com/dIMJWLx1YbE/256x320",
-    },
-    {
-      id: 4,
-      title: "Product 4",
-      imgUrl: "https://source.unsplash.com/dIMJWLx1YbE/256x320",
-    },
-  ];
+  const [searchQuery, setSearchQuery] = useState("");
+  const endpoint = `products?title=${searchQuery}`;
+  const { state, fetchData } = useSearch<Product>(endpoint);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    fetchData();
+    setSearchQuery("");
+  };
 
   return (
     <ScrollArea>
-      <div className="flex w-full flex-wrap justify-evenly gap-4 p-4">
-        {tes.map((item) => (
-          <VideoCard key={item.id} title={item.title} imgUrl={item.imgUrl} />
-        ))}
-      </div>
+      <SearchForm
+        onSubmit={(e) => handleSubmit(e)}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+      />
+      {!state.isLoading && <SearchResults searchResults={state.data!} />}
     </ScrollArea>
   );
 };

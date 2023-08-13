@@ -29,16 +29,3 @@ export const addVideo = async (req: VideoReq, res: Response): Promise<void> => {
     errorResponse(err as CustomErrors, res);
   }
 };
-
-export const searchVideos = async (
-  req: VideoReq,
-  res: Response
-): Promise<void> => {
-  try {
-    const { title } = req.query;
-    const videos = await searchVideosByTitle(title);
-    res.status(200).json({ status: "Success", data: videos });
-  } catch (err) {
-    errorResponse(err as CustomErrors, res);
-  }
-};
