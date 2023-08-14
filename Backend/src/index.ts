@@ -18,13 +18,14 @@ const app: Express = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 
 if (process.env.NODE_ENV === "development") {
   app.use(requestLogger);
 }
 
 app.get("/", (req, res) => {
-  const indexPath = path.join(__dirname, "../../frontend/build/index.html");
+  const indexPath = path.join(__dirname, "../../frontend/dist/index.html");
   res.sendFile(indexPath);
 });
 
