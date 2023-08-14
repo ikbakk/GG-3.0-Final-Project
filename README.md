@@ -5,15 +5,23 @@
 ### Local
 
 1. Clone the repo:
-   `git clone https://github.com/ikbakk/GG-3.0-Final-Project`
+   ```sh
+   git clone https://github.com/ikbakk/GG-3.0-Final-Project
+   ```
 
-2. Build docker image:
-   `docker build -t <image_name> .`
+2. Change folder name to lowercase (forgot to change folder name in initial commit)
 
-3. Run docker image:
-   `docker run -d -p 80:80 <image_name>`
+3. Build docker image:
+   ```sh
+   docker build -t <image_name> .
+   ```
 
-4. Go to `http://localhost` in browser
+4. Run docker image:
+   ```sh
+   docker run -d -p 80:80 <image_name>
+   ```
+
+5. Go to `http://localhost` in browser
 
 ### Docker Hub
 
