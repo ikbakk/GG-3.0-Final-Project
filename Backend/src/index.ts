@@ -1,3 +1,4 @@
+import path from "path";
 import "dotenv/config";
 import cors from "cors";
 import bodyParser from "body-parser";
@@ -21,6 +22,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 if (process.env.NODE_ENV === "development") {
   app.use(requestLogger);
 }
+
+app.get("/", (req, res) => {
+  const indexPath = path.join(__dirname, "../../frontend/build/index.html");
+  res.sendFile(indexPath);
+});
 
 app.use("/api/comments", commentsRouter);
 app.use("/api/products", productsRouter);

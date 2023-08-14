@@ -2,9 +2,8 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Product } from "../../types";
 import { useState } from "react";
 import useSearch from "@/hooks/useSearch";
-
-import SearchForm from "@/components/SearchPage/searchForm";
-import SearchResults from "@/components/SearchPage/searchResult";
+import SearchForm from "@/components/SearchPage/SearchForm";
+import SearchResults from "@/components/SearchPage/SearchResult";
 
 const SearchPage = () => {
   const [searchQuery, setSearchQuery] = useState("");

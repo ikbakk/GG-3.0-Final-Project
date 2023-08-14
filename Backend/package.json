@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "pnpm exec tsc",
-    "start": "cross-env NODE_ENV=production node  build/index.js",
+    "build": "cross-env NODE_ENV=production npx tsc",
+    "start": "cross-env NODE_ENV=production node build/index.js",
     "dev": "cross-env NODE_ENV=development concurrently \"pnpm exec tsc --watch\" \"nodemon ./build/index.js\""
   },
   "keywords": [],
