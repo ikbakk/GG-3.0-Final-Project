@@ -23,7 +23,10 @@ const reducer = <T>(state: State<T>, action: Action<T>): State<T> => {
 
 const useFetch = <T>(endpoint: string) => {
   const [state, dispatch] = useReducer(reducer<T>, initialState<T>());
-  const baseUrl = "http://localhost:3000/api/";
+  const baseUrl =
+    import.meta.env.VITE_ENVIRONMENT === "production"
+      ? "/api/"
+      : "http://localhost:3000/api/";
 
   useEffect(() => {
     const fetchData = async () => {

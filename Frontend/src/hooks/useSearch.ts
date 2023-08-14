@@ -23,7 +23,10 @@ const reducer = <T>(state: State<T>, action: Action<T>): State<T> => {
 
 const useSearch = <T>(endpoint: string) => {
   const [state, dispatch] = useReducer(reducer<T>, initialState<T>());
-  const baseUrl = "http://localhost:3000/api/search/";
+  const baseUrl =
+    import.meta.env.VITE_ENVIRONMENT === "production"
+      ? "/api/search/"
+      : "http://localhost:3000/api/search/";
 
   const fetchData = async () => {
     try {

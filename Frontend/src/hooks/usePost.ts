@@ -29,7 +29,10 @@ const reducer = <T>(state: State<T>, action: Action<T>): State<T> => {
 
 const usePost = <T, E>({ endpoint, body }: UsePostOptions<E>) => {
   const [state, dispatch] = useReducer(reducer<T>, initialState<T>());
-  const baseUrl = "http://localhost:3000/api/";
+  const baseUrl =
+    import.meta.env.VITE_ENVIRONMENT === "production"
+      ? "/api/"
+      : "http://localhost:3000/api/";
 
   const fetchData = async () => {
     try {
