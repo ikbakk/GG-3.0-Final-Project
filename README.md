@@ -21,3 +21,7 @@
    `docker pull ikbak/final-project-gg:1.0`
 2. Run docker image:
    `docker run -d -p 80:80 ikbak/final-project-gg:1.0`
+
+### Bonus
+
+- Add search feature
