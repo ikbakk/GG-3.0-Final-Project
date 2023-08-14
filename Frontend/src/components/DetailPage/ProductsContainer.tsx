@@ -6,6 +6,7 @@ import { ScrollArea, ScrollBar } from "../ui/scroll-area";
 import { Separator } from "../ui/separator";
 import { useContext, useEffect } from "react";
 import { MediaPlayerContext } from "@/contexts/MediaPlayeContext";
+import ProductCardSkeleton from "./ProductCardSkeleton";
 
 const ProductsContainer = () => {
   const params = useParams();
@@ -35,15 +36,23 @@ const ProductsContainer = () => {
         <div className="via-accent-50 absolute left-0 h-full w-2 bg-gradient-to-r from-accent to-accent/0"></div>
         <div className="via-accent-50 absolute right-0 h-full w-2 bg-gradient-to-l from-accent to-accent/0"></div>
         <div className="flex gap-2 px-2 pb-4">
-          {data?.map((item) => (
-            <ProductCard
-              onClick={() => handleSelectCard(item.id, item.urlProduct)}
-              key={item.id}
-              id={item.id}
-              title={item.title}
-              price={item.price}
-            />
-          ))}
+          {isLoading ? (
+            <>
+              <ProductCardSkeleton />
+              <ProductCardSkeleton />
+              <ProductCardSkeleton />
+            </>
+          ) : (
+            data?.map((item) => (
+              <ProductCard
+                onClick={() => handleSelectCard(item.id, item.urlProduct)}
+                key={item.id}
+                id={item.id}
+                title={item.title}
+                price={item.price}
+              />
+            ))
+          )}
         </div>
         <ScrollBar orientation="horizontal" />
       </ScrollArea>

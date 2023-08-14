@@ -27,6 +27,7 @@ const useFetch = <T>(endpoint: string) => {
     import.meta.env.VITE_ENVIRONMENT === "production"
       ? "/api/"
       : "http://localhost:3000/api/";
+  console.log(baseUrl);
 
   useEffect(() => {
     const fetchData = async () => {
