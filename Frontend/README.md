@@ -1,27 +1,73 @@
-# React + TypeScript + Vite
+# Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Getting Started
 
-Currently, two official plugins are available:
+Clone the repo:
+`git clone https://github.com/ikbakk/GG-3.0-Final-Project.git`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+cd to backend folder:
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+```bash
+cd frontend
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+run:
+
+```bash
+npm install
+```
+
+or with pnpm:
+
+```bash
+pnpm install
+```
+
+Run the development server:
+
+```bash
+npm run dev
+```
+
+or
+
+```bash
+pnpm dev
+```
+
+Then the server will run on port 5173 as default
+
+## Environment Variables
+
+example for `.env.production` file, Vite will automatically use this env when run build script
+
+```
+VITE_ENVIRONMENT=production
+```
+
+## Tech Used
+
+- [React](https://reactjs.org/)
+- [Vite](https://vitejs.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Shadcn UI](https://ui.shadcn.com/)
+- [React Router](https://reactrouter.com/)
+
+## Folder Structure
+
+    ├── public
+    ├── src                    
+    │   ├── assets                           #static assets 
+    │   ├── components                       #components folder  
+    │   │   ├── DetailPage              
+    │   │   ├── Navbar                       
+    │   │   ├── SearchPage                 
+    │   │   └── ui                           #components from shadcn-ui
+    │   ├── contexts                         #context providers
+    │   ├── hooks                            
+    │   ├── layouts                          #layout components to put <Outlet /> from react router
+    │   ├── lib                              #utility function folder from shadcn-ui
+    │   ├── pages                            #page components to exchange <Outlet /> in layout
+    │   └── types                                    
+    └── ...
+
